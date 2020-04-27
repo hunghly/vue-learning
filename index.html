@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue Practice</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="firstDiv">
+<!--    use {{ }} to pass in the variable-->
+    <p>number is: {{ number }}</p>
+</div>
+
+
+
+<script>
+    // Similar to an object, but we call this the vue instance
+    let firstDivVue = new Vue({
+        // el is the element or called instance member
+        el: '#firstDiv',
+        data: {
+            number: 1
+        }
+    });
+
+    firstDivVue.number = 5;
+    console.log(firstDivVue.$data);
+    firstDivVue.$watch('number', function() {
+        console.log('number has changed');
+    })
+    firstDivVue.number = 10;
+
+    console.log("hello");
+</script>
+</body>
+</html>
