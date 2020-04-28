@@ -8,8 +8,24 @@
 <body>
 
 <div id="firstDiv">
+<!--    Sets up-->
+    <input v-model="number">
 <!--    use {{ }} to pass in the variable-->
     <p>number is: {{ number }}</p>
+    <ul>
+        <li v-for="digit in digits">
+            {{digit}}
+        </li>
+    </ul>
+</div>
+
+<!--    use v-attribute in html elements to use v-if, v-else-if, and v-else attributes-->
+<!--    you can use v-for and iterate through an array-->
+<div id="secondDiv">
+<!--    when button is clicked the value of door is open is changed and vue automatically updates the page-->
+    <button v-on:click="openCloseDoor">Open or close door</button>
+    <p v-if="isDoorOpen">Come on in</p>
+    <p v-else>Door is closed</p>
 </div>
 
 
@@ -20,16 +36,34 @@
         // el is the element or called instance member
         el: '#firstDiv',
         data: {
-            number: 1
+            number: 11,
+            digits: [1, 2, 3]
+        },
+        methods: {
+            plus: function () {
+                this.number++;
+            }
         }
     });
-
-    firstDivVue.number = 5;
-    console.log(firstDivVue.$data);
-    firstDivVue.$watch('number', function() {
-        console.log('number has changed');
+    firstDivVue.plus();
+    // console.log(firstDivVue.$data);
+    // firstDivVue.$watch('number', function() {
+    //     console.log('number has changed');
+    // })
+    // firstDivVue.number = 5;
+    // firstDivVue.number = 10;
+    let secondDivVue = new Vue({
+        el: '#secondDiv',
+        data: {
+            isDoorOpen: true
+        },
+        methods: {
+            openCloseDoor: function () {
+                this.isDoorOpen = !this.isDoorOpen;
+            }
+        }
     })
-    firstDivVue.number = 10;
+
 
     console.log("hello");
 </script>
