@@ -28,6 +28,11 @@
     <p v-else>Door is closed</p>
 </div>
 
+<div id="thirdDiv">
+    <ul>
+        <grocery-item v-for="groceryItem in groceryItems" v-bind:groceryitem="groceryItem"></grocery-item>
+    </ul>
+</div>
 
 
 <script>
@@ -63,6 +68,33 @@
             }
         }
     })
+
+    // Components are custom HTML elements that we can provide custom attributes to use via props along with an HTML template
+    Vue.component('grocery-item', {
+        props: ['groceryitem', 'price'],
+        template: '<li>{{ groceryitem.quantity }} {{ groceryitem.name }}</li>'
+    })
+
+    let thirdVue = new Vue({
+        el: '#thirdDiv',
+        data: {
+            groceryItems: [
+                {
+                    name: 'bread',
+                    quantity: 2
+                },
+                {
+                    name: 'cheese',
+                    quantity: 1
+                },
+                {
+                    name: 'apples',
+                    quantity: 4
+                }
+            ]
+        }
+    })
+
 
 
     console.log("hello");
