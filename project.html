@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <title>VueProject</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+        html, body {
+            padding: 10px;
+            /*clear: both;*/
+            /*float: left;*/
+        }
+        #singleBlogPost {
+            border: 2px solid black;
+            padding: 10px;
+            width: fit-content;
+        }
+    </style>
 </head>
 <body>
-<h1>Welcome to my Blog Site!</h1>
+    <h1>Welcome to my Blog Site!</h1>
 
+<!--    title, username, body, date-->
+    <div id="blogPosts">
+        <div id="singleBlogPost">
+            <h2>{{ blogpost.title}}</h2>
+            <h3>{{ blogpost.username}}</h3>
+            <h4>{{ blogpost.date }}</h4>
+            <p>{{ blogpost.content }}</p>
+        </div>
+    </div>
 <script>
     console.log("hello");
 </script>
