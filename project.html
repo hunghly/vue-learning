@@ -17,6 +17,15 @@
             margin-bottom: 50px;
             /*width: fit-content;*/
         }
+
+        #blogPostCreation {
+            border: 2px solid blue;
+            padding: 10px;
+        }
+
+        #blogPostCreation > * {
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
@@ -24,16 +33,29 @@
 
 <!--    title, username, body, date-->
 <div id="blogPosts">
-<!--    <div id="singleBlogPost">-->
-<!--        <h2>{{ blogpost.title}}</h2>-->
-<!--        <h3>{{ blogpost.username}}</h3>-->
-<!--        <h4>{{ blogpost.date }}</h4>-->
-<!--        <p>{{ blogpost.content }}</p>-->
-<!--    </div>-->
+    <!--    <div id="singleBlogPost">-->
+    <!--        <h2>{{ blogpost.title}}</h2>-->
+    <!--        <h3>{{ blogpost.username}}</h3>-->
+    <!--        <h4>{{ blogpost.date }}</h4>-->
+    <!--        <p>{{ blogpost.content }}</p>-->
+    <!--    </div>-->
     <blog-post v-for="post in posts" v-bind:blogpost="post">
-
     </blog-post>
 </div>
+
+<div id="blogPostCreation">
+    <h2>Make a new blog post</h2>
+    <input v-model="title">
+    <br>
+    <input v-model="username">
+    <br>
+    <input v-model="date">
+    <br>
+    <input v-model="content">
+    <br>
+    <button v-on:click="publishPost">Publish Post</button>
+</div>
+
 <script>
     console.log("hello");
     // Components are custom HTML elements that we can provide custom attributes to use via props along with an HTML template
@@ -73,6 +95,32 @@
             ]
         }
     })
+
+    let postBlogVue = new Vue({
+        el: '#blogPostCreation',
+        data: {
+            title: '',
+            username: '',
+            date: '',
+            content: ''
+        },
+        methods: {
+            publishPost: function() {
+                let postData = {
+                    title: this.title,
+                    username: this.username,
+                    date: this.date,
+                    content: this.content
+                }
+                blogVue.posts.push(postData);
+                this.title = '';
+                this.username = '';
+                this.date = '';
+                this.content = '';
+            }
+        }
+    })
+
 </script>
 </body>
 </html>
